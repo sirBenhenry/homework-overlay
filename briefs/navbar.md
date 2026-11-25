@@ -20,16 +20,46 @@ Acceptance criteria:
 - nicht im Weg
 - gut strukturiert
 
-## Wireframe
+## Your part of the wireframe
 
-- The frame is on every screen. Use `docs/wireframe/screens/01-home.png` and `docs/wireframe/source/01-home.html` for the header and the navigation bar: exact sizes, the highlighted item, and the five icons as SVG.
-- Page layouts: `01-home`, `03-calendar-2-weeks`, `08-tasks`, `10-applets`, `12-settings`. Only the position and size of the areas matter to you, not what is inside them.
+The whole wireframe is in `docs/wireframe/` and you may look at all of it. Your part is the frame that is the same on all 12 screens, and the position of the content areas. Nothing inside a content area is yours.
+
+![The frame on the Home screen](../docs/wireframe/parts/navbar-home.png)
+
+Solid outline: what you build. Dashed outline: the empty places you leave, with their prop names. The same picture for a page with a single place is `docs/wireframe/parts/navbar-calendar.png`.
+
+The exact sizes and the icons are in `docs/wireframe/source/01-home.html`, in the elements `<header>` and `<nav aria-label="Main navigation">`.
+
+**Header** (every screen, at the top)
+
+- Full width, 56 px high, 32 px free on the left and right, and a 1 px line below it (`--color-border`).
+- Left: the page title, 20 px, weight 600. 16 px to its right, on the same baseline, the hint in 13 px, muted.
+- Right: the clock in a box with a 1 px strong outline and 8 px radius, 15 px text, digits of equal width.
+- The titles in the wireframe: Home, Calendar, Tasks, Applets, Settings.
+
+**Navigation bar** (every screen, at the bottom)
+
+- Centred, 16 px above the bottom edge. A white box with a 2 px strong outline, 16 px radius, 8 px padding and 6 px between the items.
+- An item is 80 × 56 px with 10 px radius: a 22 px icon above a 12 px label.
+- The current item has the fill `--color-fill-active`, a 2 px strong border and its label in weight 600. The other items have no fill and no visible border.
+- Order and icons: Calendar (calendar sheet), Tasks (checklist), Home (house), Applets (four squares), Settings (gear). Take the SVG shapes from the source file. `sc-camel-view-box` there means `viewBox`.
+
+**Content area** (every screen, between header and navigation bar)
+
+- It starts 72 px from the top, ends 104 px above the bottom, and is 32 px away from the left and right edge. At 1280 × 800 that is 1216 × 624 px.
+- Home (screen 01): the left half is `timetable`. The right half is split into `upcomingTasks` above and `addTask` below. Each column is 596 px wide and each box on the right 300 px high, with 24 px gaps.
+- Calendar (screen 03), Tasks (08), Applets (10) and Settings (12): one place, `content`, that fills the content area.
+
+**On these screens, but not yours**
+
+- Everything the wireframe shows inside the content areas: the timetable, the task boxes, the calendar, the task list and details, the applet tiles, the settings rows.
+- Screens 02, 04 to 07, 09 and 11 show other parts in other states inside the same frame. They add nothing to your part.
 
 ## What you deliver
 
 ### 1. The frame: `App` in `src/app/App.tsx`
 
-- It fills the browser window. At 1280 × 800 it matches the wireframe.
+- It fills the app window. The window opens at 1280 × 800, and at that size the frame matches the wireframe. When the window is resized, the frame follows.
 - **Header**: the name of the current page, the hint `[SHORTCUT] opens / closes the overlay` exactly as written (the shortcut itself is not built), and a clock on the right that shows the current time as `HH:MM` and stays current.
 - **Navigation bar**: bottom centre, five items in this order: Calendar, Tasks, Home, Applets, Settings. Each has the icon from the wireframe and a label.
 - The item of the current page is highlighted as in the wireframe and has `aria-current="page"`.
@@ -66,12 +96,13 @@ Your part exchanges no data with the others. Your contract is the table above: t
 - No components of other parts: no task list, no add-task box, no dialog, no calendar, no timetable, no applets, no settings controls.
 - No example content inside the pages. They stay empty.
 - No shortcut handling and no opening or closing of the overlay.
+- Nothing about the desktop window itself: its size, title bar or behaviour. That is `electron/`, which is not your folder.
 - No router library and no other new dependency.
 - No file outside `src/app/`.
 
 ## Preview and tests
 
-Your part is the app itself: `npm run dev`, then open `http://localhost:5173/`. You need no `Preview.tsx`.
+Your part is the app itself: `npm run app` opens it in the desktop window and reloads it when you save a file. You need no `Preview.tsx`.
 
 Write tests next to your code (`*.test.tsx`). At least:
 
@@ -84,6 +115,6 @@ Write tests next to your code (`*.test.tsx`). At least:
 
 - Every acceptance criterion above is met.
 - `npm run lint`, `npm test` and `npm run build` pass.
-- At 1280 × 800 the frame matches the wireframe.
+- In the app window (`npm run app`) the frame matches the wireframe.
 - The code has comments where a reader would otherwise have to guess.
-- Your human has looked at it in the browser and agrees.
+- Your human has looked at it in the app window and agrees.

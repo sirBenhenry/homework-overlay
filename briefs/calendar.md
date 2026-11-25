@@ -20,9 +20,49 @@ Acceptance criteria:
 - Kalender zeigt die Aufgaben, die zu erledigen sind.
 - Samstag und Sonntag werden zusammen angezeigt.
 
-## Wireframe
+## Your part of the wireframe
 
-`docs/wireframe/screens/03-calendar-2-weeks.png` and `docs/wireframe/source/03-calendar-2-weeks.html`. You build what is inside the content area: everything between the header and the navigation bar. The script at the bottom of the source file shows how the lessons are placed on the hour scale.
+The whole wireframe is in `docs/wireframe/` and you may look at all of it. Your part is the content area of screen 03: everything between the header and the navigation bar.
+
+![Your part of screen 03](../docs/wireframe/parts/calendar-2-weeks.png)
+
+The exact sizes are in `docs/wireframe/source/03-calendar-2-weeks.html`, inside `<main>`. The script at the bottom of that file shows how the lessons are placed.
+
+From top to bottom, 10 px apart:
+
+**Toolbar** (40 px high, 8 px between its elements)
+
+- `‹` and `›`: 40 × 40 px, 1 px strong outline, 8 px radius, 18 px text.
+- The range label, 20 px, weight 600. The wireframe draws it as a button with an arrow that opens the date picker. In this sprint it is plain text with no outline and no arrow.
+- The hint `2 weeks · weekend combined`, 13 px, muted.
+- `Today`: 40 px high, 1 px normal outline (`--color-border`), 8 px radius, 14 px text.
+- The `Edit timetable` button on the right is left out.
+
+**Column headings** (20 px high, 12 px text, weight 600, muted)
+
+- `Week` over the week column, `Monday` to `Friday` over the day cells, `Weekend` over the weekend cell. The text starts 12 px inside its column.
+
+**Two week rows** (they share the remaining height equally and are 8 px apart, with 8 px between the cells of a row)
+
+- **Week column**, 40 px wide: the week label like `W39` (12 px, weight 600, muted). Below it the hours `08:00` to `17:00` (10 px, muted), each next to its line of the hour scale.
+- **Five day cells** of equal width: 10 px radius, padding 8 × 10 px, 1 px normal outline, white. Each has three areas:
+  - a top line, 20 px high, with the date like `Mon 21.09.` (15 px, weight 600),
+  - the hour scale in all the remaining height, where 08:00 is the top edge and 17:00 the bottom edge, with a thin line (`--color-line`) at every full hour,
+  - a bottom line, 22 px high, with the `Due` chips.
+- **Today's cell**: 2 px strong outline, the fill `--color-fill-subtle`, and the badge `TODAY` at the top right (11 px, weight 600, white on dark, 4 px radius).
+- **Days before today**: the date and the lesson text in `--color-text-past`, and paler lesson blocks (fill `--color-fill-subtle`, outline `--color-line`).
+- **Lesson block**: reaches from its start to its end time on the hour scale. Fill `--color-fill`, 1 px normal outline, 4 px radius, 11 px text: the subject in weight 600 on the left, the room muted on the right. A subject that is too long ends with `…`.
+- **Now**: a dashed 2 px line across today's cell at the current time. The lesson running at that time has a 2 px strong outline.
+- **Due chip**: 1 px strong outline, 6 px radius, 12 px text: `Due` in weight 600, then `title · subject`.
+- **Weekend cell**: 0.6 times as wide as a day cell, with a dashed 1 px outline and 10 px radius. `Sat–Sun` at the top (15 px, weight 600). In the middle, centred over faint hour lines, the dates like `26.–27.09.` (12 px) and `No lessons` (12 px, muted). At the bottom its `Due` chips, which show `Due` and the title.
+
+**Placing a lesson:** the hour scale covers 540 minutes. A block starts at (minutes after 08:00) ÷ 540 of the scale's height and is (length in minutes) ÷ 540 of it high.
+
+**On this screen, but not yours**
+
+- The header and the navigation bar. They belong to `navbar`.
+- The `Edit timetable` button and the screen behind it (06).
+- The date picker (screen 04), the day view (05) and the weekend view (07). The wireframe makes the range label and the cells clickable for them. Not in this sprint.
 
 ## What you deliver
 
@@ -101,4 +141,4 @@ Write tests next to your code. At least, with `today` = `2026-09-23`:
 - `npm run lint`, `npm test` and `npm run build` pass.
 - On the preview page the calendar matches screen 03.
 - The code has comments where a reader would otherwise have to guess.
-- Your human has looked at it in the browser and agrees.
+- Your human has looked at it on the preview page and agrees.

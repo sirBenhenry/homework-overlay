@@ -28,8 +28,10 @@
   --color-line: #dddddd; /* hour lines, dividers */
 
   /* Corner radius */
-  --radius-xs: 4px; /* badges */
+  --radius-xs: 4px; /* badges, lesson blocks */
+  --radius-chip: 6px; /* chips */
   --radius-s: 8px; /* inputs, buttons, rows */
+  --radius-cell: 10px; /* navigation items, calendar cells */
   --radius-m: 12px; /* panels */
   --radius-l: 16px; /* navigation bar */
 

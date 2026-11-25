@@ -16,6 +16,8 @@ Three drop-in pieces:
 
 You do not put them into the app. Ben places them into the frame after the merge. Until then you look at them on the preview page.
 
+The app is a desktop app, but for your part that changes nothing: `localStorage` works in the app window as it does in a browser.
+
 ## User stories
 
 ### Aufgabe hinzufügen
@@ -38,10 +40,49 @@ Acceptance criteria:
 - Schliessen löscht keine Aufgaben
 - Liste muss nach dem Öffnen der App unverändert angezeigt werden
 
-## Wireframe
+## Your part of the wireframe
 
-- `docs/wireframe/screens/01-home.png` and `source/01-home.html`: the boxes "Upcoming tasks" and "Add task" in the right half.
-- `docs/wireframe/screens/02-home-new-task.png` and `source/02-home-new-task.html`: the "New task" dialog.
+The whole wireframe is in `docs/wireframe/` and you may look at all of it. Your part is two boxes on the Home screen and the dialog that takes the place of one of them.
+
+![Your two boxes on the Home screen](../docs/wireframe/parts/tasks-home.png)
+
+![The dialog after pressing Enter](../docs/wireframe/parts/tasks-new-task.png)
+
+The exact sizes are in `docs/wireframe/source/01-home.html` (`<section aria-label="Upcoming tasks">` and `<section aria-label="Add task">`) and in `docs/wireframe/source/02-home-new-task.html` (`<section role="dialog" aria-label="New task">`).
+
+**The "Upcoming tasks" box is `TaskList`** (screen 01, right half, upper box, 596 × 300 px)
+
+- Panel: 1 px strong outline, 12 px radius, padding 16 px above and below and 20 px left and right, 8 px between the rows.
+- Heading `Upcoming tasks`, 17 px, weight 600. The `All tasks` link on the right is left out in this sprint.
+- A row: 1 px outline (`--color-border`), 8 px radius, padding 8 × 12 px. On the left the title (15 px, weight 500) and, 10 px after it on the same baseline, the subject (13 px, muted). On the right the due date (13 px, never wraps).
+- The rows in the wireframe: Exercise 2 / Englisch / Tomorrow, Worksheet fractions / Mathe / Fri 25.09., Read chapter 3 / Deutsch / Mon 28.09., Vocab test prep / Französisch / Tue 29.09., Project draft / Informatik / Thu 01.10.
+
+**The "Add task" box is `AddTask`** (screen 01, right half, lower box, 596 × 300 px)
+
+- Panel: 2 px strong outline, 12 px radius, the same padding. The content sits in the vertical middle, with 10 px between its lines.
+- The label `Add task`, 15 px, weight 600.
+- One line with the text field and the button, 8 px apart. The text field is 44 px high with a 1 px strong outline, 8 px radius and 15 px text, and takes all the remaining width. The button `↵ Enter` is 44 px high with a dark fill, white 14 px text in weight 500 and 8 px radius.
+- Below it the hint `Short form gets turned into title, subject and due date.`, 12 px, muted.
+
+**The "New task" dialog is `AddTask` after Enter** (screen 02, same place and size as the box)
+
+- Panel: white, 2 px strong outline, 12 px radius, the same padding, and the shadow `0 8px 24px rgba(0, 0, 0, 0.14)`.
+- Top line: `New task` on the left (17 px, weight 600). On the right `You typed:` (13 px, muted) and the typed text in a chip with the fill `--color-fill`, a 1 px outline and 6 px radius.
+- The fields form a grid of label, field, label, field: Title and Subject in the first line, Due and Time in the second, Notes in the third across the whole width. Labels 14 px. Fields 40 px high, 8 px radius, 15 px text.
+- Title, Subject and Due have the strong outline. Time and Notes have the normal outline and the placeholder `Optional`.
+- Bottom right: `Cancel` (44 px high, 1 px strong outline) and `Save task` (44 px high, dark fill, white text), 8 px apart.
+- The wireframe shows Title and Due as fixed text. In the app the user can change them.
+
+**On these screens, but not yours**
+
+- The header and the navigation bar. They belong to `navbar`.
+- The "Today" panel in the left half. It is not built in this sprint.
+- The values the dialog starts with (`Exercise 2`, `Englisch`, `Thu 24.09.2026`). They come from `parse`, which is built on `input-formatter`.
+
+**Elsewhere in the wireframe**
+
+- Screens 08 and 09, the Tasks page, show the stored tasks with search and details. Not built in this sprint.
+- The `Due` chips in the calendar (screen 03) show your tasks, but the `calendar` branch draws them.
 
 ## What you deliver
 
@@ -168,4 +209,4 @@ Write tests next to your code. At least:
 - `npm run lint`, `npm test` and `npm run build` pass.
 - On the preview page the box, the dialog and the list match the wireframe.
 - The code has comments where a reader would otherwise have to guess.
-- Your human has looked at it in the browser and agrees.
+- Your human has looked at it on the preview page and agrees.

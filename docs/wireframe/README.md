@@ -1,12 +1,15 @@
 # Wireframe
 
-The wireframe decides how every part of the app looks. It shows the app at 1280 × 800.
+The wireframe decides how every part of the app looks. It shows the app window at 1280 × 800.
+
+Everyone has the whole wireframe and may use all of it. Which part of it you build is described in your brief, under "Your part of the wireframe".
 
 | Path | What it is |
 |---|---|
 | `wireflow.html` | The original file with all 12 screens. Open it in a browser. |
 | `screens/` | One picture per screen. |
 | `source/` | The markup of each screen. The `style` attributes hold the exact sizes, spacing and colours. |
+| `parts/` | Screens with one branch's part marked. The briefs show them. |
 
 ## The screens
 

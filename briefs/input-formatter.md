@@ -26,11 +26,24 @@ Acceptance criteria:
 - Möglichkeit, formatierten Input zu verändern, falls er falsch verstanden wurde. **Your share:** always return a complete draft and never throw. The "New task" dialog on the `tasks` branch shows your draft in fields the user can change.
 - Möglichkeit, eigene Abkürzungen hinzuzufügen. **Your share:** `useAbbreviations` and `AbbreviationEditor`.
 
-## Wireframe
+## Your part of the wireframe
 
-- `docs/wireframe/screens/02-home-new-task.png`: what `eng ex.2 tomorrow` becomes.
-- `docs/wireframe/source/08-tasks.html`: the script at the bottom lists more typed texts (`typed`) with their result.
-- There is no wireframe for the abbreviation editor. Build it plainly with the same fields, buttons and rows as screen 02, and show it to Ben.
+The whole wireframe is in `docs/wireframe/` and you may look at all of it. You build no visible part of its screens. Your results show up inside parts that others build:
+
+![Where your results appear in the dialog](../docs/wireframe/parts/input-formatter-new-task.png)
+
+- **Screen 02, the "New task" dialog.** The user typed `eng ex.2 tomorrow`. The chip after `You typed:` is your `typed`. The Title field `Exercise 2` is your `title`, the Subject field `Englisch` your `subject`, and the Due field `Thu 24.09.2026` your `due` (the dialog turns `2026-09-24` into that text). Time and Notes are empty because you return `null` and `''`. The dialog itself is built on the `tasks` branch.
+- **Screen 01, the "Add task" box.** The placeholder `e.g. eng ex.2 tomorrow` and the hint `Short form gets turned into title, subject and due date.` describe your job. The box is built on the `tasks` branch.
+- **Screen 08, the task details.** The line `Typed as` shows `typed` next to the stored result. The script at the bottom of `docs/wireframe/source/08-tasks.html` lists ten such pairs, and the example table below is made from them. The screen itself is not built in this sprint.
+
+**The abbreviation editor has no wireframe.** Build it from the pieces of screens 01 and 02 (`docs/wireframe/source/02-home-new-task.html`):
+
+- a panel with a 1 px strong outline, 12 px radius and padding 16 px above and below and 20 px left and right,
+- fields 40 px high with 8 px radius and 15 px text,
+- rows like the task rows of screen 01: 1 px normal outline, 8 px radius, padding 8 × 12 px,
+- a dark button like `Save task` for adding.
+
+Show the result to Ben before you call it finished.
 
 ## What you deliver
 
@@ -169,4 +182,4 @@ Write tests next to your code. At least:
 - `npm run lint`, `npm test` and `npm run build` pass.
 - On the preview page the examples give the results of the table.
 - The code has comments where a reader would otherwise have to guess.
-- Your human has looked at it in the browser and agrees.
+- Your human has looked at it on the preview page and agrees.
