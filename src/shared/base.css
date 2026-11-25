@@ -1,0 +1,72 @@
+/*
+ * The shared look, taken from the wireframe (docs/wireframe).
+ * Loaded by the app and by the preview page, so a part looks the same in both.
+ * Use these variables in your CSS instead of writing colours and sizes by hand.
+ */
+
+@import '@fontsource/ibm-plex-sans/400.css';
+@import '@fontsource/ibm-plex-sans/500.css';
+@import '@fontsource/ibm-plex-sans/600.css';
+
+:root {
+  --font: 'IBM Plex Sans', system-ui, sans-serif;
+
+  /* Text */
+  --color-text: #1f1f1f;
+  --color-text-muted: #5c5c5c; /* hints, secondary labels */
+  --color-text-past: #6b6b6b; /* days that are over */
+
+  /* Surfaces */
+  --color-bg: #ffffff;
+  --color-fill: #f2f2f2; /* lesson blocks, chips */
+  --color-fill-subtle: #fafafa; /* today's column */
+  --color-fill-active: #e6e6e6; /* selected or current item */
+
+  /* Lines */
+  --color-border: #bdbdbd; /* normal outline */
+  --color-border-strong: #1f1f1f; /* emphasised outline, primary buttons */
+  --color-line: #dddddd; /* hour lines, dividers */
+
+  /* Corner radius */
+  --radius-xs: 4px; /* badges */
+  --radius-s: 8px; /* inputs, buttons, rows */
+  --radius-m: 12px; /* panels */
+  --radius-l: 16px; /* navigation bar */
+
+  /* Font sizes */
+  --text-xs: 12px;
+  --text-s: 13px;
+  --text-m: 14px;
+  --text-l: 15px;
+  --text-xl: 17px; /* panel headings */
+  --text-title: 20px; /* page title */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font);
+  font-size: var(--text-m);
+  line-height: 1.4;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}

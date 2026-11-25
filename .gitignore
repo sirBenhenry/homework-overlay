@@ -24,4 +24,8 @@ CLAUDE.local.md
 # Logs
 *.log
 
-# Build output and dependencies: add the entries for the stack once it is chosen
+# Dependencies and build output
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
