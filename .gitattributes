@@ -1,0 +1,7 @@
+# Store text with LF line endings whatever the operating system,
+# so Windows and Linux/macOS machines do not produce whole-file diffs.
+* text=auto eol=lf
+
+# Windows scripts need CRLF to run.
+*.bat text eol=crlf
+*.cmd text eol=crlf

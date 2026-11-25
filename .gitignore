@@ -1,0 +1,27 @@
+# Operating system
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Personal agent and tool files (shared rules live in AGENTS.md)
+.claude/settings.local.json
+CLAUDE.local.md
+.aider*
+
+# Logs
+*.log
+
+# Build output and dependencies: add the entries for the stack once it is chosen
