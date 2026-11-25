@@ -1,19 +1,18 @@
-Closes #
+Part / branch:
 
 ## What changed
 
 
 ## How it was checked
-<!-- The commands you ran and what they really printed. If nothing was run, say why. -->
+<!-- What `npm run lint`, `npm test` and `npm run build` printed, and what you looked at in the browser. If something was not run, say why. -->
 
 
 ## For the reviewer
-<!-- New dependencies, shared files touched, anything left out on purpose. Delete if empty. -->
+<!-- Anything changed outside your own folder, anything left out on purpose, open questions. Delete if empty. -->
 
 
 ---
 
-- [ ] One issue, one purpose: no unrelated changes
-- [ ] Branch is up to date with `main`
-- [ ] The human behind this PR has read the whole diff
-- [ ] If an agent wrote this PR, it says so here:
+- [ ] Everything under "Done when" in my brief (`briefs/<branch>.md`) is met
+- [ ] Only files in my own folder changed, or the exception was agreed with Ben
+- [ ] I (the human) looked at it in the browser and read the whole diff
