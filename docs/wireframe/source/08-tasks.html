@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>Tasks</title>
+<script src="cdf25fca-ddc3-4122-9978-ee161187223a"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 1280px; height: 800px; position: relative; box-sizing: border-box; background: #ffffff; color: #1f1f1f; font-family: 'IBM Plex Sans', system-ui, sans-serif; overflow: hidden;">
+
+<header style="position: absolute; left: 0; top: 0; right: 0; height: 56px; box-sizing: border-box; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #bdbdbd;">
+<div style="display: flex; align-items: baseline; gap: 16px;">
+<h1 style="margin: 0; font-size: 20px; font-weight: 600;">Tasks</h1>
+<span style="font-size: 13px; color: #5c5c5c;">[SHORTCUT] opens / closes the overlay</span>
+</div>
+<div aria-label="Current time" style="padding: 6px 12px; border: 1px solid #1f1f1f; border-radius: 8px; font-size: 15px; font-variant-numeric: tabular-nums;">11:10</div>
+</header>
+
+<main style="position: absolute; left: 32px; right: 32px; top: 72px; bottom: 104px; display: grid; grid-template-columns: 440px minmax(0, 1fr); gap: 24px;">
+
+<section aria-label="Task list" style="border: 1px solid #1f1f1f; border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 8px; min-height: 0; overflow: hidden;">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 0 4px 4px;">
+<h2 style="margin: 0; font-size: 17px; font-weight: 600;">{{listTitle}}</h2>
+<div style="display: flex; align-items: center; gap: 8px;">
+<span style="font-size: 13px; color: #5c5c5c;">{{listHint}}</span>
+<button type="button" sc-camel-on-click="{{toggleSearch}}" aria-label="Search tasks" aria-pressed="{{searchPressed}}" style="width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: {{searchBtnBg}}; border: 1px solid #1f1f1f; border-radius: 8px; color: #1f1f1f; cursor: pointer;"><svg width="20" height="20" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6"></circle><path d="M20 20l-4.5-4.5"></path></svg></button>
+</div>
+</div>
+<sc-if value="{{searchOpen}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; align-items: center; gap: 8px; height: 44px; box-sizing: border-box; padding: 0 6px 0 12px; border: 2px solid #1f1f1f; border-radius: 22px;">
+<label for="task-search" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);">Search open and closed tasks</label>
+<input id="task-search" type="text" value="{{q}}" sc-camel-on-change="{{onQ}}" placeholder="Search open + closed tasks" style="flex-grow: 1; min-width: 0; height: 36px; border: 0; font: inherit; font-size: 15px; color: #1f1f1f; background: transparent;">
+<button type="button" sc-camel-on-click="{{clearQ}}" aria-label="Close search" style="height: 32px; padding: 0 10px; background: #ffffff; border: 1px solid #bdbdbd; border-radius: 16px; font: inherit; font-size: 13px; color: #1f1f1f; cursor: pointer;">Close</button>
+</div>
+</sc-if>
+<sc-if value="{{showTabs}}" hint-placeholder-val="{{ true }}">
+<div role="group" aria-label="Show" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0; border: 1px solid #1f1f1f; border-radius: 8px; overflow: hidden;">
+<button type="button" sc-camel-on-click="{{showOpen}}" aria-pressed="{{openPressed}}" style="height: 36px; background: {{openBg}}; border: 0; font: inherit; font-size: 14px; color: {{openFg}}; cursor: pointer;">Open · {{openCount}}</button>
+<button type="button" sc-camel-on-click="{{showClosed}}" aria-pressed="{{closedPressed}}" style="height: 36px; background: {{closedBg}}; border: 0; border-left: 1px solid #1f1f1f; font: inherit; font-size: 14px; color: {{closedFg}}; cursor: pointer;">Closed · {{closedCount}}</button>
+</div>
+</sc-if>
+<sc-for list="{{rows}}" as="t" hint-placeholder-count="5">
+<button type="button" sc-camel-on-click="{{t.pick}}" aria-pressed="{{t.pressed}}" style="display: flex; align-items: center; gap: 12px; padding: 10px 12px; text-align: left; background: {{t.bg}}; border: {{t.border}}; border-radius: 8px; font: inherit; color: #1f1f1f; cursor: pointer;">
+<span aria-hidden="true" style="width: 18px; height: 18px; flex-shrink: 0; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid #1f1f1f; border-radius: 50%; background: {{t.dotBg}}; color: #ffffff; font-size: 11px; line-height: 1;">{{t.check}}</span>
+<span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px;">
+<span style="font-size: 15px; font-weight: 500;">{{t.title}}</span>
+<span style="font-size: 13px; color: #5c5c5c;">{{t.subject}}</span>
+</span>
+<span style="font-size: 13px; white-space: nowrap; color: {{t.dueColor}};">{{t.dueShort}}</span>
+</button>
+</sc-for>
+<sc-if value="{{noResults}}" hint-placeholder-val="{{ false }}">
+<p style="margin: 8px 4px; font-size: 14px; color: #5c5c5c;">No tasks match.</p>
+</sc-if>
+</section>
+
+<section aria-label="Task details" style="border: 1px solid #1f1f1f; border-radius: 12px; padding: 24px 28px; display: flex; flex-direction: column; gap: 20px; min-height: 0;">
+<div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px;">
+<div style="display: flex; flex-direction: column; gap: 4px;">
+<span style="font-size: 13px; color: #5c5c5c;">{{sel.subject}}</span>
+<h2 style="margin: 0; font-size: 28px; font-weight: 600;">{{sel.title}}</h2>
+</div>
+<span style="padding: 4px 10px; border: 1px solid #1f1f1f; border-radius: 999px; font-size: 13px;">{{sel.status}}</span>
+</div>
+<dl style="margin: 0; display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 10px 16px; font-size: 15px;">
+<dt style="color: #5c5c5c;">Subject</dt><dd style="margin: 0;">{{sel.subject}}</dd>
+<dt style="color: #5c5c5c;">{{sel.dueLabel}}</dt><dd style="margin: 0;">{{sel.dueLong}}</dd>
+<dt style="color: #5c5c5c;">Added</dt><dd style="margin: 0;">{{sel.added}}</dd>
+<dt style="color: #5c5c5c;">Typed as</dt><dd style="margin: 0; font-family: ui-monospace, monospace; font-size: 14px;">{{sel.typed}}</dd>
+</dl>
+<div style="display: flex; flex-direction: column; gap: 6px; flex-grow: 1; min-height: 0;">
+<span style="font-size: 14px; font-weight: 600;">Notes</span>
+<div style="flex-grow: 1; padding: 12px 14px; border: 1px dashed #bdbdbd; border-radius: 8px; font-size: 15px; color: #5c5c5c;">{{sel.notes}}</div>
+</div>
+<div style="display: flex; gap: 8px; flex-wrap: wrap;">
+<button type="button" style="height: 44px; padding: 0 18px; background: #1f1f1f; border: 1px solid #1f1f1f; border-radius: 8px; font: inherit; font-size: 15px; font-weight: 500; color: #ffffff; cursor: pointer;">{{sel.primary}}</button>
+<button type="button" style="height: 44px; padding: 0 18px; background: #ffffff; border: 1px solid #1f1f1f; border-radius: 8px; font: inherit; font-size: 15px; color: #1f1f1f; cursor: pointer;">Edit</button>
+<a href="Calendar-Day.dc.html" style="height: 44px; box-sizing: border-box; display: flex; align-items: center; padding: 0 18px; border: 1px solid #1f1f1f; border-radius: 8px; text-decoration: none; color: #1f1f1f; font-size: 15px;">Show in calendar</a>
+<button type="button" style="height: 44px; margin-left: auto; padding: 0 18px; background: #ffffff; border: 1px solid #bdbdbd; border-radius: 8px; font: inherit; font-size: 15px; color: #1f1f1f; cursor: pointer;">Delete</button>
+</div>
+</section>
+
+</main>
+
+<nav aria-label="Main navigation" style="position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); display: flex; gap: 6px; padding: 8px; background: #ffffff; border: 2px solid #1f1f1f; border-radius: 16px;">
+<a href="Calendar.dc.html" style="width: 80px; height: 56px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; border: 2px solid transparent; border-radius: 10px; color: #1f1f1f; text-decoration: none; font-size: 12px;"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg>Calendar</a>
+<a href="Tasks.dc.html" aria-current="page" style="width: 80px; height: 56px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; background: #e6e6e6; border: 2px solid #1f1f1f; border-radius: 10px; color: #1f1f1f; text-decoration: none; font-size: 12px; font-weight: 600;"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6h10M10 12h10M10 18h10"></path><path d="M4 6l1.5 1.5L8 5M4 12l1.5 1.5L8 11M4 18l1.5 1.5L8 17"></path></svg>Tasks</a>
+<a href="Main.dc.html" style="width: 80px; height: 56px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; border: 2px solid transparent; border-radius: 10px; color: #1f1f1f; text-decoration: none; font-size: 12px;"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"></path><path d="M5 10v10h14V10"></path></svg>Home</a>
+<a href="Applets.dc.html" style="width: 80px; height: 56px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; border: 2px solid transparent; border-radius: 10px; color: #1f1f1f; text-decoration: none; font-size: 12px;"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="7" height="7" rx="1.5"></rect><rect x="13" y="4" width="7" height="7" rx="1.5"></rect><rect x="4" y="13" width="7" height="7" rx="1.5"></rect><rect x="13" y="13" width="7" height="7" rx="1.5"></rect></svg>Applets</a>
+<a href="Settings.dc.html" style="width: 80px; height: 56px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; border: 2px solid transparent; border-radius: 10px; color: #1f1f1f; text-decoration: none; font-size: 12px;"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"></path></svg>Settings</a>
+</nav>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;initialQuery&quot;:{&quot;editor&quot;:null,&quot;default&quot;:&quot;&quot;},&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:800}}">
+class Component extends DCLogic {
+  renderVals() {
+    var self = this;
+    var OPEN = [
+      { id: 't1', title: 'Exercise 2', subject: 'Englisch', dueShort: 'Tomorrow', dueLong: 'Thursday 24.09.2026 (tomorrow)', added: 'Wed 23.09.2026, 11:08', typed: 'eng ex.2 tomorrow', notes: 'No notes yet.' },
+      { id: 't2', title: 'Worksheet fractions', subject: 'Mathe', dueShort: 'Fri 25.09.', dueLong: 'Friday 25.09.2026', added: 'Mon 21.09.2026, 16:40', typed: 'math worksheet fractions fri', notes: 'No notes yet.' },
+      { id: 't3', title: 'Read chapter 3', subject: 'Deutsch', dueShort: 'Mon 28.09.', dueLong: 'Monday 28.09.2026', added: 'Tue 22.09.2026, 13:02', typed: 'de read ch3 monday', notes: 'No notes yet.' },
+      { id: 't4', title: 'Vocab test prep', subject: 'Französisch', dueShort: 'Tue 29.09.', dueLong: 'Tuesday 29.09.2026', added: 'Tue 22.09.2026, 10:15', typed: 'fr vocab test tue 29.9', notes: 'No notes yet.' },
+      { id: 't5', title: 'Project draft', subject: 'Informatik', dueShort: 'Thu 01.10.', dueLong: 'Thursday 01.10.2026', added: 'Thu 17.09.2026, 15:30', typed: 'inf project draft 1.10', notes: 'No notes yet.' }
+    ];
+    var CLOSED = [
+      { id: 'c1', title: 'Essay outline', subject: 'Deutsch', dueShort: 'Closed 22.09.', dueLong: 'Tuesday 22.09.2026', added: 'Mon 14.09.2026, 17:20', typed: 'de essay outline tue', notes: 'No notes yet.' },
+      { id: 'c2', title: 'Exercise 1', subject: 'Englisch', dueShort: 'Closed 21.09.', dueLong: 'Monday 21.09.2026', added: 'Thu 17.09.2026, 10:05', typed: 'eng ex.1 monday', notes: 'No notes yet.' },
+      { id: 'c3', title: 'Quiz corrections', subject: 'Mathe', dueShort: 'Closed 18.09.', dueLong: 'Friday 18.09.2026', added: 'Wed 16.09.2026, 12:40', typed: 'math quiz corrections fri', notes: 'No notes yet.' },
+      { id: 'c4', title: 'Presentation slides', subject: 'Wirtschaft', dueShort: 'Closed 17.09.', dueLong: 'Thursday 17.09.2026', added: 'Thu 10.09.2026, 14:00', typed: 'wr presentation slides thu', notes: 'No notes yet.' },
+      { id: 'c5', title: 'Grammar sheet', subject: 'Französisch', dueShort: 'Closed 16.09.', dueLong: 'Wednesday 16.09.2026', added: 'Mon 14.09.2026, 09:30', typed: 'fr grammar sheet wed', notes: 'No notes yet.' }
+    ];
+    OPEN.forEach(function (t) { t.closed = false; });
+    CLOSED.forEach(function (t) { t.closed = true; });
+    var st = this.state || {};
+    var init = this.props.initialQuery || '';
+    var q = st.q !== undefined ? st.q : init;
+    var searchOpen = st.searchOpen !== undefined ? st.searchOpen : !!init;
+    var view = st.view || 'open';
+    var needle = searchOpen ? q.trim().toLowerCase() : '';
+    var searching = needle.length > 0;
+    function match(t) { return (t.title + ' ' + t.subject + ' ' + t.typed).toLowerCase().indexOf(needle) !== -1; }
+    var list = searching ? OPEN.filter(match).concat(CLOSED.filter(match)) : (view === 'open' ? OPEN : CLOSED);
+    var selId = st.sel || (list[0] && list[0].id) || 't1';
+    var all = OPEN.concat(CLOSED);
+    var sel = all.filter(function (t) { return t.id === selId; })[0] || all[0];
+    var rows = list.map(function (t) {
+      var on = t.id === sel.id;
+      return {
+        title: t.title, subject: t.subject, dueShort: t.dueShort,
+        pressed: on ? 'true' : 'false',
+        bg: on ? '#e6e6e6' : '#ffffff',
+        border: on ? '2px solid #1f1f1f' : '1px solid #bdbdbd',
+        dotBg: t.closed ? '#1f1f1f' : '#ffffff',
+        check: t.closed ? '✓' : '',
+        dueColor: t.closed ? '#5c5c5c' : '#1f1f1f',
+        pick: function () { self.setState({ sel: t.id }); }
+      };
+    });
+    return {
+      rows: rows,
+      noResults: searching && list.length === 0,
+      listTitle: searching ? 'Results · ' + list.length : (view === 'open' ? 'Open tasks' : 'Closed tasks'),
+      listHint: searching ? 'Open + closed' : (view === 'open' ? 'Next due first' : 'Last closed first'),
+      searchOpen: searchOpen,
+      searchPressed: searchOpen ? 'true' : 'false',
+      searchBtnBg: searchOpen ? '#e6e6e6' : '#ffffff',
+      toggleSearch: function () { self.setState({ searchOpen: !searchOpen, q: searchOpen ? '' : q }); },
+      q: q,
+      onQ: function (e) { self.setState({ q: e.target.value, sel: null }); },
+      clearQ: function () { self.setState({ q: '', searchOpen: false, sel: null }); },
+      showTabs: !searching,
+      openCount: OPEN.length, closedCount: CLOSED.length,
+      openPressed: view === 'open' ? 'true' : 'false', closedPressed: view === 'closed' ? 'true' : 'false',
+      openBg: view === 'open' ? '#1f1f1f' : '#ffffff', openFg: view === 'open' ? '#ffffff' : '#1f1f1f',
+      closedBg: view === 'closed' ? '#1f1f1f' : '#ffffff', closedFg: view === 'closed' ? '#ffffff' : '#1f1f1f',
+      showOpen: function () { self.setState({ view: 'open', sel: null }); },
+      showClosed: function () { self.setState({ view: 'closed', sel: null }); },
+      sel: {
+        title: sel.title, subject: sel.subject, dueLong: sel.dueLong, added: sel.added, typed: sel.typed, notes: sel.notes,
+        status: sel.closed ? 'Closed' : 'Open',
+        dueLabel: sel.closed ? 'Closed on' : 'Due',
+        primary: sel.closed ? 'Reopen' : 'Mark as done'
+      }
+    };
+  }
+}
+</script>
+
+
+</body></html>

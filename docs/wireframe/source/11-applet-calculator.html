@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<title>Applet – calculator</title>
+<script src="971b93a8-03bd-4dbe-b15b-dc4ac9312577"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: 1280px; height: 800px; position: relative; box-sizing: border-box; background: #ffffff; color: #1f1f1f; font-family: 'IBM Plex Sans', system-ui, sans-serif; overflow: hidden;">
+
+<header style="position: absolute; left: 0; top: 0; right: 0; height: 56px; box-sizing: border-box; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #bdbdbd;">
+<div style="display: flex; align-items: baseline; gap: 16px;">
+<h1 style="margin: 0; font-size: 20px; font-weight: 600;">Applets</h1>
+<span style="font-size: 13px; color: #5c5c5c;">[SHORTCUT] opens / closes the overlay</span>
+</div>
+<div aria-label="Current time" style="padding: 6px 12px; border: 1px solid #1f1f1f; border-radius: 8px; font-size: 15px; font-variant-numeric: tabular-nums;">11:10</div>
+</header>
+
+<a href="Applets.dc.html" style="position: absolute; left: 32px; top: 76px; height: 40px; box-sizing: border-box; display: flex; align-items: center; padding: 0 14px; border: 1px solid #1f1f1f; border-radius: 8px; text-decoration: none; color: #1f1f1f; font-size: 14px;">‹ All applets</a>
+
+<main style="position: absolute; left: 50%; transform: translateX(-50%); width: 340px; top: 80px; display: flex; flex-direction: column; gap: 12px;">
+<h2 style="margin: 0; font-size: 17px; font-weight: 600; text-align: center;">Calculator</h2>
+<section aria-label="Calculator" style="border: 2px solid #1f1f1f; border-radius: 16px; padding: 16px; display: flex; flex-direction: column; gap: 12px;">
+<div style="height: 76px; box-sizing: border-box; padding: 8px 14px; background: #f2f2f2; border-radius: 10px; display: flex; flex-direction: column; align-items: flex-end; justify-content: center;">
+<span style="font-size: 13px; color: #5c5c5c; min-height: 18px;">{{expr}}</span>
+<output aria-live="polite" style="font-size: 32px; font-weight: 500; font-variant-numeric: tabular-nums;">{{d}}</output>
+</div>
+<div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px;">
+<sc-for list="{{keys}}" as="k" hint-placeholder-count="19">
+<button type="button" sc-camel-on-click="{{k.press}}" aria-label="{{k.aria}}" style="grid-column: {{k.span}}; height: 60px; background: {{k.bg}}; border: 1px solid #1f1f1f; border-radius: 10px; font: inherit; font-size: 20px; color: {{k.fg}}; cursor: pointer;">{{k.label}}</button>
+</sc-for>
+</div>
+</section>
+</main>
+
+<nav aria-label="Main navigation" style="position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); display: flex; gap: 6px; padding: 8px; background: #ffffff; border: 2px solid #1f1f1f; border-radius: 16px;">
+<a href="Calendar.dc.html" style="width: 80px; height: 56px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; border: 2px solid transparent; border-radius: 10px; color: #1f1f1f; text-decoration: none; font-size: 12px;"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg>Calendar</a>
+<a href="Tasks.dc.html" style="width: 80px; height: 56px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; border: 2px solid transparent; border-radius: 10px; color: #1f1f1f; text-decoration: none; font-size: 12px;"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 6h10M10 12h10M10 18h10"></path><path d="M4 6l1.5 1.5L8 5M4 12l1.5 1.5L8 11M4 18l1.5 1.5L8 17"></path></svg>Tasks</a>
+<a href="Main.dc.html" style="width: 80px; height: 56px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; border: 2px solid transparent; border-radius: 10px; color: #1f1f1f; text-decoration: none; font-size: 12px;"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"></path><path d="M5 10v10h14V10"></path></svg>Home</a>
+<a href="Applets.dc.html" aria-current="page" style="width: 80px; height: 56px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; background: #e6e6e6; border: 2px solid #1f1f1f; border-radius: 10px; color: #1f1f1f; text-decoration: none; font-size: 12px; font-weight: 600;"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="7" height="7" rx="1.5"></rect><rect x="13" y="4" width="7" height="7" rx="1.5"></rect><rect x="4" y="13" width="7" height="7" rx="1.5"></rect><rect x="13" y="13" width="7" height="7" rx="1.5"></rect></svg>Applets</a>
+<a href="Settings.dc.html" style="width: 80px; height: 56px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; border: 2px solid transparent; border-radius: 10px; color: #1f1f1f; text-decoration: none; font-size: 12px;"><svg width="22" height="22" sc-camel-view-box="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"></path></svg>Settings</a>
+</nav>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:800}}">
+class Component extends DCLogic {
+  renderVals() {
+    var self = this;
+    var s = this.state || {};
+    var d = s.d !== undefined ? s.d : '0';
+    var acc = s.acc !== undefined ? s.acc : null;
+    var op = s.op || null;
+    var fresh = s.fresh !== undefined ? s.fresh : true;
+    var SYM = { '+': '+', '-': '−', '*': '×', '/': '÷' };
+    function fmt(x) { return isFinite(x) ? String(parseFloat(x.toPrecision(12))) : 'Error'; }
+    function calc(a, b, o) { return o === '+' ? a + b : o === '-' ? a - b : o === '*' ? a * b : a / b; }
+    function digit(n) {
+      return function () {
+        var nd;
+        if (fresh || d === 'Error') nd = n === '.' ? '0.' : n;
+        else if (n === '.' && d.indexOf('.') !== -1) return;
+        else nd = (d === '0' && n !== '.') ? n : d + n;
+        self.setState({ d: nd, fresh: false });
+      };
+    }
+    function oper(o) {
+      return function () {
+        var cur = parseFloat(d);
+        var a = acc;
+        if (a === null) a = cur;
+        else if (!fresh && op) a = calc(a, cur, op);
+        self.setState({ acc: a, op: o, fresh: true, d: fmt(a) });
+      };
+    }
+    function equals() {
+      if (op && acc !== null) self.setState({ d: fmt(calc(acc, parseFloat(d), op)), acc: null, op: null, fresh: true });
+    }
+    function clear() { self.setState({ d: '0', acc: null, op: null, fresh: true }); }
+    function neg() { self.setState({ d: fmt(-parseFloat(d)) }); }
+    function pct() { self.setState({ d: fmt(parseFloat(d) / 100) }); }
+    function k(label, aria, press, kind, span) {
+      return {
+        label: label, aria: aria, press: press, span: span || 'auto',
+        bg: kind === 'eq' ? '#1f1f1f' : kind === 'op' ? '#e6e6e6' : '#ffffff',
+        fg: kind === 'eq' ? '#ffffff' : '#1f1f1f'
+      };
+    }
+    var keys = [
+      k('C', 'Clear', clear, 'op'), k('±', 'Change sign', neg, 'op'), k('%', 'Percent', pct, 'op'), k('÷', 'Divide', oper('/'), 'op'),
+      k('7', '7', digit('7')), k('8', '8', digit('8')), k('9', '9', digit('9')), k('×', 'Multiply', oper('*'), 'op'),
+      k('4', '4', digit('4')), k('5', '5', digit('5')), k('6', '6', digit('6')), k('−', 'Subtract', oper('-'), 'op'),
+      k('1', '1', digit('1')), k('2', '2', digit('2')), k('3', '3', digit('3')), k('+', 'Add', oper('+'), 'op'),
+      k('0', '0', digit('0'), null, 'span 2'), k('.', 'Decimal point', digit('.')), k('=', 'Equals', equals, 'eq')
+    ];
+    return { d: d, expr: acc !== null && op ? fmt(acc) + ' ' + SYM[op] : '', keys: keys };
+  }
+}
+</script>
+
+
+</body></html>
