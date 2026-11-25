@@ -3,9 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "main": "electron/main.js",
   "scripts": {
     "dev": "vite",
+    "app": "node scripts/app.js",
     "build": "tsc -b && vite build",
+    "start": "electron .",
     "lint": "oxlint",
     "test": "vitest run",
     "test:watch": "vitest"
@@ -23,6 +26,7 @@
     "@types/react": "^19.3.3",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.3.0",
+    "electron": "^45.5.0",
     "jsdom": "^31.0.1",
     "oxlint": "^1.95.0",
     "typescript": "~7.0.2",
