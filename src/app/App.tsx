@@ -26,9 +26,8 @@ function pageTitle(page: PageId): string {
  * App frame: header, bottom navigation and pages with named places.
  * Parts are handed into the places here. The add-task box turns typed text
  * into a draft with the input formatter and saves to the task storage; the
- * task lists on Home and Tasks show what is stored. There is no timetable
- * data yet, so the timetable and the calendar get no lessons, and the
- * calendar gets no tasks.
+ * task lists on Home and Tasks and the calendar show what is stored. There
+ * is no timetable data yet, so the timetable and the calendar get no lessons.
  */
 export default function App() {
   const [page, setPage] = useState<PageId>(DEFAULT_PAGE)
@@ -52,7 +51,7 @@ export default function App() {
             addTask={<AddTask parse={parse} subjects={subjects} onAdd={addTask} />}
           />
         )}
-        {page === 'calendar' && <CalendarPage content={<Calendar tasks={[]} lessons={[]} />} />}
+        {page === 'calendar' && <CalendarPage content={<Calendar tasks={tasks} lessons={[]} />} />}
         {page === 'tasks' && <TasksPage content={<TaskList tasks={tasks} />} />}
         {page === 'applets' && <AppletsPage />}
         {page === 'settings' && <SettingsPage />}

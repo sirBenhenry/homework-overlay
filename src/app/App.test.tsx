@@ -126,4 +126,13 @@ describe('App frame', () => {
     expect(screen.queryByText('content')).not.toBeInTheDocument()
     expect(screen.getByText('Exercise 2')).toBeInTheDocument()
   })
+
+  it('shows a saved task in the calendar', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+
+    // The task "Exercise 2", due tomorrow, was saved by the test above.
+    await user.click(within(nav()).getByRole('button', { name: 'Calendar' }))
+    expect(screen.getByText(/Exercise 2/)).toBeInTheDocument()
+  })
 })
