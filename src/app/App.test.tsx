@@ -41,12 +41,23 @@ describe('App frame', () => {
 
     expect(screen.getByText('timetable')).toBeInTheDocument()
     expect(screen.getByText('upcomingTasks')).toBeInTheDocument()
-    expect(screen.getByText('addTask')).toBeInTheDocument()
 
     for (const page of PAGES.filter((entry) => entry.id !== 'home' && entry.id !== 'calendar')) {
       await user.click(within(nav()).getByRole('button', { name: page.label }))
       expect(screen.getByText('content')).toBeInTheDocument()
     }
+  })
+
+  it('shows the add-task box on Home and parses with the input formatter', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+
+    expect(screen.queryByText('addTask')).not.toBeInTheDocument()
+    await user.type(screen.getByLabelText('Add task'), 'eng ex.2 tomorrow{Enter}')
+
+    const dialog = screen.getByRole('dialog', { name: 'New task' })
+    expect(within(dialog).getByLabelText('Title')).toHaveValue('Exercise 2')
+    expect(within(dialog).getByLabelText('Subject')).toHaveValue('Englisch')
   })
 
   it('shows the calendar on the Calendar page', async () => {
