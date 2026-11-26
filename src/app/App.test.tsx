@@ -20,7 +20,7 @@ describe('App frame', () => {
 
     expect(screen.getByRole('heading', { level: 1, name: 'Home' })).toBeInTheDocument()
     expect(currentNavItem()).toHaveTextContent('Home')
-    expect(screen.getByText('timetable')).toBeInTheDocument()
+    expect(screen.getByRole('region', { name: "Today's timetable" })).toBeInTheDocument()
   })
 
   it('shows each page and moves the highlight when a nav item is clicked', async () => {
@@ -39,13 +39,29 @@ describe('App frame', () => {
     const user = userEvent.setup()
     render(<App />)
 
-    expect(screen.getByText('timetable')).toBeInTheDocument()
-    expect(screen.getByText('upcomingTasks')).toBeInTheDocument()
-
-    for (const page of PAGES.filter((entry) => entry.id !== 'home' && entry.id !== 'calendar')) {
+    for (const page of PAGES.filter((entry) => entry.id === 'applets' || entry.id === 'settings')) {
       await user.click(within(nav()).getByRole('button', { name: page.label }))
       expect(screen.getByText('content')).toBeInTheDocument()
     }
+  })
+
+  it('shows the timetable and the upcoming tasks on Home', () => {
+    render(<App />)
+
+    expect(screen.getByRole('region', { name: "Today's timetable" })).toBeInTheDocument()
+    expect(screen.getByRole('region', { name: 'Upcoming tasks' })).toBeInTheDocument()
+    expect(screen.queryByText('timetable')).not.toBeInTheDocument()
+    expect(screen.queryByText('upcomingTasks')).not.toBeInTheDocument()
+  })
+
+  it("opens the Calendar page from the timetable's Calendar button", async () => {
+    const user = userEvent.setup()
+    render(<App />)
+
+    const timetable = screen.getByRole('region', { name: "Today's timetable" })
+    await user.click(within(timetable).getByRole('button', { name: 'Calendar' }))
+
+    expect(screen.getByRole('heading', { level: 1, name: 'Calendar' })).toBeInTheDocument()
   })
 
   it('shows the add-task box on Home and parses with the input formatter', async () => {
@@ -93,5 +109,21 @@ describe('App frame', () => {
     expect(screen.getByText('filled calendar')).toBeInTheDocument()
     expect(screen.queryByText('content')).not.toBeInTheDocument()
   })
-})
 
+  // Kept last: the task storage keeps its list in memory for the whole test file.
+  it('shows a saved task on Home and on the Tasks page', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+
+    await user.type(screen.getByLabelText('Add task'), 'eng ex.2 tomorrow{Enter}')
+    await user.click(screen.getByRole('button', { name: 'Save task' }))
+
+    const upcoming = screen.getByRole('region', { name: 'Upcoming tasks' })
+    expect(within(upcoming).getByText('Exercise 2')).toBeInTheDocument()
+    expect(within(upcoming).getByText('Tomorrow')).toBeInTheDocument()
+
+    await user.click(within(nav()).getByRole('button', { name: 'Tasks' }))
+    expect(screen.queryByText('content')).not.toBeInTheDocument()
+    expect(screen.getByText('Exercise 2')).toBeInTheDocument()
+  })
+})

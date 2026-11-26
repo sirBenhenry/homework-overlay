@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { Calendar } from '../features/calendar/index.ts'
 import { parseTaskInput, useAbbreviations } from '../features/input-formatter/index.ts'
-import { AddTask, useTasks } from '../features/tasks/index.ts'
+import { AddTask, TaskList, useTasks } from '../features/tasks/index.ts'
+import { Timetable } from '../features/timetable/index.ts'
 import { todayIso } from '../shared/dates.ts'
 import type { ParseTaskInput } from '../shared/types.ts'
 import styles from './App.module.css'
@@ -24,12 +25,14 @@ function pageTitle(page: PageId): string {
 /**
  * App frame: header, bottom navigation and pages with named places.
  * Parts are handed into the places here. The add-task box turns typed text
- * into a draft with the input formatter and saves to the task storage.
- * The calendar gets no tasks and no lessons yet.
+ * into a draft with the input formatter and saves to the task storage; the
+ * task lists on Home and Tasks show what is stored. There is no timetable
+ * data yet, so the timetable and the calendar get no lessons, and the
+ * calendar gets no tasks.
  */
 export default function App() {
   const [page, setPage] = useState<PageId>(DEFAULT_PAGE)
-  const { addTask } = useTasks()
+  const { tasks, addTask } = useTasks()
   const { abbreviations } = useAbbreviations()
 
   // There is no subject list yet, so the subjects are the ones the input
@@ -42,9 +45,15 @@ export default function App() {
       <Header title={pageTitle(page)} />
 
       <main className={styles.content}>
-        {page === 'home' && <HomePage addTask={<AddTask parse={parse} subjects={subjects} onAdd={addTask} />} />}
+        {page === 'home' && (
+          <HomePage
+            timetable={<Timetable lessons={[]} onOpenCalendar={() => setPage('calendar')} />}
+            upcomingTasks={<TaskList tasks={tasks} />}
+            addTask={<AddTask parse={parse} subjects={subjects} onAdd={addTask} />}
+          />
+        )}
         {page === 'calendar' && <CalendarPage content={<Calendar tasks={[]} lessons={[]} />} />}
-        {page === 'tasks' && <TasksPage />}
+        {page === 'tasks' && <TasksPage content={<TaskList tasks={tasks} />} />}
         {page === 'applets' && <AppletsPage />}
         {page === 'settings' && <SettingsPage />}
       </main>
