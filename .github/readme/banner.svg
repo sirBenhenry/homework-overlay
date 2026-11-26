@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" width="1200" height="300" role="img" aria-label="homework-overlay: your homework, laid over the screen">
+  <style>
+    svg { font-family: 'IBM Plex Sans', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; }
+    .bg { fill: #ffffff; }
+    .text { fill: #1f1f1f; }
+    .muted { fill: #5c5c5c; }
+    .fill { fill: #f2f2f2; }
+    .border { stroke: #bdbdbd; }
+    .strong { stroke: #1f1f1f; }
+    .ink { fill: #1f1f1f; }
+    .on-ink { fill: #ffffff; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #0d1117; }
+      .text { fill: #e6edf3; }
+      .muted { fill: #9198a1; }
+      .fill { fill: #161b22; }
+      .border { stroke: #3d444d; }
+      .strong { stroke: #e6edf3; }
+      .ink { fill: #e6edf3; }
+      .on-ink { fill: #0d1117; }
+    }
+  </style>
+
+  <rect class="bg border" x="1" y="1" width="1198" height="298" rx="16" stroke-width="2"/>
+
+  <!-- Title and tagline -->
+  <text class="text" x="64" y="122" font-size="54" font-weight="600" letter-spacing="-1">homework-overlay</text>
+  <text class="muted" x="66" y="168" font-size="21">Your homework, laid over the screen.</text>
+  <text class="muted" x="66" y="198" font-size="21">Type a task in a few words. See what is due.</text>
+
+  <!-- Chips -->
+  <g font-size="14" font-weight="500">
+    <rect class="fill border" x="66" y="228" width="72" height="30" rx="6"/>
+    <text class="text" x="102" y="248" text-anchor="middle">Linux</text>
+    <rect class="fill border" x="148" y="228" width="96" height="30" rx="6"/>
+    <text class="text" x="196" y="248" text-anchor="middle">Windows</text>
+    <rect class="fill border" x="254" y="228" width="84" height="30" rx="6"/>
+    <text class="text" x="296" y="248" text-anchor="middle">Offline</text>
+    <rect class="ink" x="348" y="228" width="96" height="30" rx="6"/>
+    <text class="on-ink" x="396" y="248" text-anchor="middle">Sprint 1</text>
+  </g>
+
+  <!-- Mini "Today" panel, after the home screen of the wireframe -->
+  <rect class="bg strong" x="760" y="36" width="380" height="228" rx="12" stroke-width="2"/>
+  <text class="text" x="784" y="70" font-size="16" font-weight="600">Today · Wednesday 23.09.</text>
+
+  <g font-size="14">
+    <rect class="fill border" x="824" y="88" width="296" height="32" rx="4"/>
+    <text class="text" x="838" y="109"><tspan font-weight="600">Mathe</tspan> · R204</text>
+    <text class="muted" x="1106" y="109" text-anchor="end">08:20–09:05</text>
+
+    <rect class="fill border" x="824" y="128" width="296" height="32" rx="4"/>
+    <text class="text" x="838" y="149"><tspan font-weight="600">Englisch</tspan> · R112</text>
+    <text class="muted" x="1106" y="149" text-anchor="end">10:15–11:00</text>
+
+    <line class="strong" x1="824" y1="176" x2="1120" y2="176" stroke-width="1.5" stroke-dasharray="6 4"/>
+    <rect class="ink" x="780" y="168" width="38" height="16" rx="3"/>
+    <text class="on-ink" x="799" y="180" font-size="10" font-weight="600" text-anchor="middle">NOW</text>
+
+    <rect class="fill strong" x="824" y="182" width="296" height="32" rx="4" stroke-width="2"/>
+    <text class="text" x="838" y="203"><tspan font-weight="600">Informatik</tspan> · Lab 3</text>
+    <text class="muted" x="1106" y="203" text-anchor="end">11:05–11:50</text>
+
+    <rect class="fill border" x="824" y="222" width="296" height="32" rx="4"/>
+    <text class="text" x="838" y="243"><tspan font-weight="600">Deutsch</tspan> · R108</text>
+    <text class="muted" x="1106" y="243" text-anchor="end">13:15–14:00</text>
+  </g>
+</svg>

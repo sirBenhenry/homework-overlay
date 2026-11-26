@@ -1,21 +1,52 @@
-# homework-overlay
+<div align="center">
 
-A desktop app for Linux and Windows that lays your homework over the screen: type a task in a few words, and see what is due in a two-week calendar next to your timetable.
+<img src=".github/readme/banner.svg" alt="homework-overlay: your homework, laid over the screen" width="100%">
 
-**Status:** sprint 1. The project is set up and four parts are being built in parallel.
+<br>
 
-## Sprint 1: who builds what
+<p>
+  <img src="https://img.shields.io/badge/Electron-45-1f1f1f?style=for-the-badge&logo=electron&logoColor=white" alt="Electron 45">
+  <img src="https://img.shields.io/badge/React-19-1f1f1f?style=for-the-badge&logo=react&logoColor=white" alt="React 19">
+  <img src="https://img.shields.io/badge/TypeScript-7-1f1f1f?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript 7">
+  <img src="https://img.shields.io/badge/Vite-8-1f1f1f?style=for-the-badge&logo=vite&logoColor=white" alt="Vite 8">
+  <img src="https://img.shields.io/badge/Vitest-5-1f1f1f?style=for-the-badge&logo=vitest&logoColor=white" alt="Vitest 5">
+</p>
+<p>
+  <img src="https://img.shields.io/badge/platform-Linux%20%7C%20Windows-5c5c5c?style=flat-square" alt="Platform: Linux and Windows">
+  <img src="https://img.shields.io/badge/works-offline-5c5c5c?style=flat-square" alt="Works offline">
+  <img src="https://img.shields.io/badge/status-sprint%201-5c5c5c?style=flat-square" alt="Status: sprint 1">
+</p>
+
+**A desktop app for Linux and Windows that lays your homework over the screen:**<br>
+type a task in a few words, and see what is due in a two-week calendar next to your timetable.
+
+[Sprint 1](#-sprint-1-who-builds-what) · [Getting started](#-getting-started) · [How we work](#-how-we-work) · [Project setup](#%EF%B8%8F-project-setup) · [Wireframe](#-wireframe) · [Definition of done](#-definition-of-done)
+
+<br>
+
+<img src="docs/wireframe/screens/01-home.png" alt="The home screen of the wireframe" width="90%">
+
+<sub>The home screen, as drawn in the <a href="docs/wireframe/README.md">wireframe</a>.</sub>
+
+</div>
+
+<br>
+
+> [!NOTE]
+> **Status:** sprint 1. The project is set up and four parts are being built in parallel.
+
+## 🧩 Sprint 1: who builds what
 
 Each part has its own branch, its own folder and a brief that says exactly what to deliver.
 
-| Branch | Trello cards | Folder | Brief |
-|---|---|---|---|
-| `navbar` | Navbar | `src/app/` | [briefs/navbar.md](briefs/navbar.md) | morris
-| `tasks` | Aufgabe hinzufügen, Aufgabenliste speichern | `src/features/tasks/` | [briefs/tasks.md](briefs/tasks.md) | alex
-| `calendar` | Kalenderansicht | `src/features/calendar/` | [briefs/calendar.md](briefs/calendar.md) | elio
-| `input-formatter` | input formatter | `src/features/input-formatter/` | [briefs/input-formatter.md](briefs/input-formatter.md) | josh
+| Branch | Trello cards | Folder | Brief | Who |
+|---|---|---|---|---|
+| 🧭 `navbar` | Navbar | `src/app/` | [briefs/navbar.md](briefs/navbar.md) | morris |
+| ✅ `tasks` | Aufgabe hinzufügen, Aufgabenliste speichern | `src/features/tasks/` | [briefs/tasks.md](briefs/tasks.md) | alex |
+| 📅 `calendar` | Kalenderansicht | `src/features/calendar/` | [briefs/calendar.md](briefs/calendar.md) | elio |
+| ✍️ `input-formatter` | input formatter | `src/features/input-formatter/` | [briefs/input-formatter.md](briefs/input-formatter.md) | josh |
 
-## Getting started
+## 🚀 Getting started
 
 You need Node.js and npm. The project was set up and checked with Node 26 and npm 12, on Linux.
 
@@ -27,11 +58,12 @@ npm install
 npm run app
 ```
 
-`npm run app` opens the app in its desktop window. The first time it downloads Electron, about 100 MB.
+> [!TIP]
+> `npm run app` opens the app in its desktop window. The first time it downloads Electron, about 100 MB.
 
 Then read your brief, and start your agent in this folder while you are on your branch. The agent finds its job from the branch name.
 
-## How we work
+## 🤝 How we work
 
 The idea: nobody builds "the app". `navbar` builds an empty frame, and everyone else builds a part that can be dropped into it.
 
@@ -43,23 +75,24 @@ The idea: nobody builds "the app". `navbar` builds an empty frame, and everyone 
 6. **Your agent commits, you push.** Look at the result and read the diff before you push: `git push -u origin <your branch>`.
 7. **Ben merges.** When your part is finished, push it and open a pull request into `main`. Ben merges `navbar` first, then the other three, and places the parts into the frame in `src/app/App.tsx`.
 
-If something is unclear or missing in your brief, ask Ben. Do not let your agent guess.
+> [!IMPORTANT]
+> If something is unclear or missing in your brief, ask Ben. Do not let your agent guess.
 
-### The commandments for agents
+### 📜 The commandments for agents
 
 Every agent in this repo follows these. The full rules are in [AGENTS.md](AGENTS.md), which most agents read on their own.
 
-1. An agent shall always stay on its branch.
-2. An agent shall never merge branches.
-3. An agent shall commit but never push.
-4. An agent must never assume and always ask.
-5. An agent may raise concern and confusion about existing code in the repository, but he may never change or delete it without asking.
+> 1. An agent shall always stay on its branch.
+> 2. An agent shall never merge branches.
+> 3. An agent shall commit but never push.
+> 4. An agent must never assume and always ask.
+> 5. An agent may raise concern and confusion about existing code in the repository, but he may never change or delete it without asking.
 
 For you this means: you push, you answer your agent's questions, and you decide with Ben before anything outside your folder changes.
 
-## Project setup
+## ⚙️ Project setup
 
-### Stack
+### 🧱 Stack
 
 | What | Choice |
 |---|---|
@@ -73,7 +106,7 @@ For you this means: you push, you answer your agent's questions, and you decide 
 
 There is no router library. The frame switches pages with React state.
 
-### Commands
+### ⌨️ Commands
 
 | Command | What it does |
 |---|---|
@@ -85,7 +118,8 @@ There is no router library. The frame switches pages with React state.
 | `npm run build` | Type-checks the code and builds the app into `dist/`. |
 | `npm start` | Opens the built app from `dist/` in the desktop window. Run `npm run build` first. |
 
-### Folders
+<details>
+<summary><b>🗂️ Folders</b></summary>
 
 ```
 electron/
@@ -110,7 +144,10 @@ briefs/                 one brief per branch
 
 The folders under `src/features/` appear when their branch adds its first file.
 
-### The desktop app
+</details>
+
+<details>
+<summary><b>🖥️ The desktop app</b></summary>
 
 The app has two sides:
 
@@ -127,7 +164,10 @@ Not built yet:
 
 Because it is a desktop app, the parts load nothing from the internet, use no web navigation (no links to other pages, no URLs, no router), and must work the same on Linux and Windows.
 
-### Shared code: `src/shared/`
+</details>
+
+<details>
+<summary><b>🔗 Shared code: <code>src/shared/</code></b></summary>
 
 Everything in here is used by several parts, so nobody changes it alone.
 
@@ -140,7 +180,10 @@ Everything in here is used by several parts, so nobody changes it alone.
 
 A day is always a string like `2026-09-24` in local time (`IsoDate`). Use the helpers in `dates.ts`: getting a day with `toISOString()` returns the day before for local midnight in Switzerland.
 
-### The preview page
+</details>
+
+<details>
+<summary><b>👀 The preview page</b></summary>
 
 A part can be seen before the frame exists. Put a file `Preview.tsx` with a default export into your folder, for example `src/features/calendar/Preview.tsx`, run `npm run dev` and open `http://localhost:5173/preview.html?feature=calendar`. The page finds the file by itself, so nothing has to be registered and no shared file changes. Without `?feature=` it lists all parts that have a preview.
 
@@ -148,11 +191,17 @@ Open it in Chrome, Chromium or Edge. The app window uses the same engine, so the
 
 The preview page is a development tool. `npm run build` does not include it.
 
-### Tests
+</details>
+
+<details>
+<summary><b>🧪 Tests</b></summary>
 
 Tests sit next to the code as `*.test.ts` or `*.test.tsx`. After every test the rendered components are removed and `localStorage` is emptied (`src/test-setup.ts`), so tests do not affect each other.
 
-### Data on the user's computer
+</details>
+
+<details>
+<summary><b>💾 Data on the user's computer</b></summary>
 
 Sprint 1 keeps data in the `localStorage` of the app window. Electron stores it in the app's own data folder on the computer.
 
@@ -163,15 +212,17 @@ Sprint 1 keeps data in the `localStorage` of the app window. Electron stores it 
 
 The app window (`npm run app`), the preview page in your browser and the built app (`npm start`) each keep their own copy, so tasks entered on the preview page do not show up in the app window.
 
-## Wireframe
+</details>
+
+## 🎨 Wireframe
 
 [docs/wireframe](docs/wireframe/README.md) has the original file, one picture per screen, the source of each screen with the exact sizes and colours, and pictures with each branch's part marked. Everyone has all of it. The index also lists which screens are part of sprint 1.
 
-## Definition of done
+## 🏁 Definition of done
 
 A card moves to Done only when all of this is true:
 
-- The function is implemented and meets all acceptance criteria.
-- It was tested and works as described.
-- The layout matches the wireframe.
-- Comments or documentation are added.
+- [ ] The function is implemented and meets all acceptance criteria.
+- [ ] It was tested and works as described.
+- [ ] The layout matches the wireframe.
+- [ ] Comments or documentation are added.
