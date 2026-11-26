@@ -93,6 +93,32 @@ Then read your brief and start your agent in this folder. It finds its job from 
 > [!IMPORTANT]
 > Something unclear or missing in your brief? Ask Ben. Do not let your agent guess.
 
+## Handing in your part: a pull request into `main`
+
+**1. Check it.** Your agent goes through "Done when" in your brief and runs `npm run lint`, `npm test` and `npm run build`. You look at your part on the preview page and read the whole diff:
+
+```sh
+git diff main...HEAD
+```
+
+**2. Push your branch.**
+
+```sh
+git push -u origin <your branch>   # later pushes: just git push
+```
+
+**3. Open the pull request.** On the [repo page](https://github.com/sirBenhenry/homework-overlay), click **Compare & pull request** in the yellow bar that appears after your push. No bar? Go to **Pull requests → New pull request** and pick:
+
+| base | compare |
+|---|---|
+| `main` | your branch |
+
+**4. Fill it in.** Give it a short title like `Add the two-week calendar`. The description is a template with three questions: what changed, how it was checked (paste what lint, test and build printed), and anything the reviewer should know. Tick the three boxes at the bottom only if they are true.
+
+**5. Click Create pull request.** Ben reviews it. Do not merge it yourself.
+
+**6. Changes asked for?** Let your agent fix them on the same branch, then `git push`. The pull request updates by itself, so do not open a new one.
+
 ## Commands
 
 | | |
