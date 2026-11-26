@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400" width="1200" height="400" role="img" aria-label="Four branches, one folder each. Each agent commits, its human pushes and opens a pull request, and Ben merges them into main and places the parts into the frame.">
+  <style>
+    svg { font-family: 'IBM Plex Sans', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; }
+    .bg { fill: #ffffff; }
+    .text { fill: #1f1f1f; }
+    .muted { fill: #5c5c5c; }
+    .fill { fill: #f2f2f2; }
+    .border { stroke: #bdbdbd; }
+    .strong { stroke: #1f1f1f; }
+    .ink { fill: #1f1f1f; }
+    .on-ink { fill: #ffffff; }
+    .mono { font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #0d1117; }
+      .text { fill: #e6edf3; }
+      .muted { fill: #9198a1; }
+      .fill { fill: #161b22; }
+      .border { stroke: #3d444d; }
+      .strong { stroke: #e6edf3; }
+      .ink { fill: #e6edf3; }
+      .on-ink { fill: #0d1117; }
+    }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path class="ink" d="M0,0 L10,5 L0,10 z"/>
+    </marker>
+  </defs>
+
+  <rect class="bg border" x="1" y="1" width="1198" height="398" rx="16" stroke-width="2"/>
+
+  <!-- Four branches -->
+  <g>
+    <rect class="bg strong" x="40" y="40" width="260" height="120" rx="12" stroke-width="2"/>
+    <text class="text mono" x="64" y="72" font-size="18" font-weight="600">navbar</text>
+    <text class="muted mono" x="64" y="96" font-size="13">src/app/</text>
+    <text class="text" x="64" y="128" font-size="15">The frame: header, navigation,</text>
+    <text class="text" x="64" y="147" font-size="15">empty pages</text>
+
+    <rect class="bg border" x="320" y="40" width="260" height="120" rx="12" stroke-width="2"/>
+    <text class="text mono" x="344" y="72" font-size="18" font-weight="600">tasks</text>
+    <text class="muted mono" x="344" y="96" font-size="13">src/features/tasks/</text>
+    <text class="text" x="344" y="128" font-size="15">Task storage, add-task box,</text>
+    <text class="text" x="344" y="147" font-size="15">task list</text>
+
+    <rect class="bg border" x="600" y="40" width="260" height="120" rx="12" stroke-width="2"/>
+    <text class="text mono" x="624" y="72" font-size="18" font-weight="600">calendar</text>
+    <text class="muted mono" x="624" y="96" font-size="13">src/features/calendar/</text>
+    <text class="text" x="624" y="128" font-size="15">Two-week calendar</text>
+
+    <rect class="bg border" x="880" y="40" width="280" height="120" rx="12" stroke-width="2"/>
+    <text class="text mono" x="904" y="72" font-size="18" font-weight="600">input-formatter</text>
+    <text class="muted mono" x="904" y="96" font-size="13">src/features/input-formatter/</text>
+    <text class="text" x="904" y="128" font-size="15">Typed text → task draft,</text>
+    <text class="text" x="904" y="147" font-size="15">abbreviations</text>
+  </g>
+
+  <!-- Arrows down -->
+  <g class="strong" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <path d="M170,160 V262"/>
+    <path d="M450,160 V262"/>
+    <path d="M730,160 V262"/>
+    <path d="M1020,160 V262"/>
+  </g>
+
+  <!-- Steps along the arrows -->
+  <g font-size="13" font-weight="500">
+    <rect class="fill border" x="70" y="186" width="1060" height="40" rx="20"/>
+    <circle class="ink" cx="150" cy="206" r="11"/><text class="on-ink" x="150" y="211" text-anchor="middle" font-size="12" font-weight="600">1</text>
+    <text class="text" x="168" y="211">Your agent commits on your branch</text>
+    <circle class="ink" cx="470" cy="206" r="11"/><text class="on-ink" x="470" y="211" text-anchor="middle" font-size="12" font-weight="600">2</text>
+    <text class="text" x="488" y="211">You read the diff, push and open a pull request</text>
+    <circle class="ink" cx="850" cy="206" r="11"/><text class="on-ink" x="850" y="211" text-anchor="middle" font-size="12" font-weight="600">3</text>
+    <text class="text" x="868" y="211">Ben reviews and merges</text>
+  </g>
+
+  <!-- main -->
+  <rect class="ink" x="40" y="264" width="1120" height="100" rx="12"/>
+  <text class="on-ink mono" x="64" y="302" font-size="18" font-weight="600">main</text>
+  <text class="on-ink" x="64" y="334" font-size="15">Ben merges navbar first, then the other three, and places each part into its empty place in the frame.</text>
+</svg>
