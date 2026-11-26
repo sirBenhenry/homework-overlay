@@ -10,10 +10,10 @@ Each part has its own branch, its own folder and a brief that says exactly what 
 
 | Branch | Trello cards | Folder | Brief |
 |---|---|---|---|
-| `navbar` | Navbar | `src/app/` | [briefs/navbar.md](briefs/navbar.md) |
-| `tasks` | Aufgabe hinzufügen, Aufgabenliste speichern | `src/features/tasks/` | [briefs/tasks.md](briefs/tasks.md) |
-| `calendar` | Kalenderansicht | `src/features/calendar/` | [briefs/calendar.md](briefs/calendar.md) |
-| `input-formatter` | input formatter | `src/features/input-formatter/` | [briefs/input-formatter.md](briefs/input-formatter.md) |
+| `navbar` | Navbar | `src/app/` | [briefs/navbar.md](briefs/navbar.md) | morris
+| `tasks` | Aufgabe hinzufügen, Aufgabenliste speichern | `src/features/tasks/` | [briefs/tasks.md](briefs/tasks.md) | alex
+| `calendar` | Kalenderansicht | `src/features/calendar/` | [briefs/calendar.md](briefs/calendar.md) | elio
+| `input-formatter` | input formatter | `src/features/input-formatter/` | [briefs/input-formatter.md](briefs/input-formatter.md) | josh
 
 ## Getting started
 
