@@ -43,10 +43,20 @@ describe('App frame', () => {
     expect(screen.getByText('upcomingTasks')).toBeInTheDocument()
     expect(screen.getByText('addTask')).toBeInTheDocument()
 
-    for (const page of PAGES.filter((entry) => entry.id !== 'home')) {
+    for (const page of PAGES.filter((entry) => entry.id !== 'home' && entry.id !== 'calendar')) {
       await user.click(within(nav()).getByRole('button', { name: page.label }))
       expect(screen.getByText('content')).toBeInTheDocument()
     }
+  })
+
+  it('shows the calendar on the Calendar page', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+
+    await user.click(within(nav()).getByRole('button', { name: 'Calendar' }))
+
+    expect(screen.getByText('2 weeks · weekend combined')).toBeInTheDocument()
+    expect(screen.queryByText('content')).not.toBeInTheDocument()
   })
 
   it('shows handed Home content instead of the empty outlines', () => {

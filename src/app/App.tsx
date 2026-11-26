@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Calendar } from '../features/calendar/index.ts'
 import styles from './App.module.css'
 import {
   AppletsPage,
@@ -17,8 +18,9 @@ function pageTitle(page: PageId): string {
 }
 
 /**
- * App frame: header, bottom navigation and empty pages with named places.
- * This sprint hands no content into the places; Ben will wire the other parts later.
+ * App frame: header, bottom navigation and pages with named places.
+ * Parts are handed into the places here. The calendar gets no tasks and no
+ * lessons yet: they come once the task storage and a timetable exist.
  */
 export default function App() {
   const [page, setPage] = useState<PageId>(DEFAULT_PAGE)
@@ -29,7 +31,7 @@ export default function App() {
 
       <main className={styles.content}>
         {page === 'home' && <HomePage />}
-        {page === 'calendar' && <CalendarPage />}
+        {page === 'calendar' && <CalendarPage content={<Calendar tasks={[]} lessons={[]} />} />}
         {page === 'tasks' && <TasksPage />}
         {page === 'applets' && <AppletsPage />}
         {page === 'settings' && <SettingsPage />}
