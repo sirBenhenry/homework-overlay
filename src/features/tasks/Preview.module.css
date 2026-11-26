@@ -1,0 +1,7 @@
+.preview {
+  display: grid;
+  width: min(100%, 596px);
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: 300px 300px;
+  gap: 24px;
+}

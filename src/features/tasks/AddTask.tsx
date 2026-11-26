@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { NewTask, ParseTaskInput, TaskDraft } from '../../shared/types'
+import styles from './AddTask.module.css'
 
 interface AddTaskProps {
   parse: ParseTaskInput
@@ -14,6 +15,7 @@ export function AddTask({ parse, subjects, onAdd }: AddTaskProps) {
   if (draft === null) {
     return (
       <form
+        className={styles.quickAdd}
         onSubmit={(event) => {
           event.preventDefault()
           if (text.trim()) setDraft(parse(text))
@@ -37,6 +39,7 @@ export function AddTask({ parse, subjects, onAdd }: AddTaskProps) {
 
   return (
     <section
+      className={styles.dialog}
       role="dialog"
       aria-label="New task"
       onKeyDown={(event) => {
@@ -89,12 +92,13 @@ export function AddTask({ parse, subjects, onAdd }: AddTaskProps) {
 
         <label>
           Time
-          <input
-            type="time"
-            placeholder="Optional"
-            value={draft.time ?? ''}
-            onChange={(event) => setDraft({ ...draft, time: event.target.value || null })}
-          />
+          <span className={styles.timeField} data-empty={draft.time === null}>
+    <input
+      type="time"
+      value={draft.time ?? ''}
+      onChange={(event) => setDraft({ ...draft, time: event.target.value || null })}
+    />
+  </span>
         </label>
 
         <label>
@@ -106,8 +110,10 @@ export function AddTask({ parse, subjects, onAdd }: AddTaskProps) {
           />
         </label>
 
-        <button type="button" onClick={() => setDraft(null)}>Cancel</button>
-        <button type="submit" disabled={!title || !draft.due}>Save task</button>
+        <div className={styles.actions}>
+          <button type="button" onClick={() => setDraft(null)}>Cancel</button>
+          <button type="submit" disabled={!title || !draft.due}>Save task</button>
+        </div>
       </form>
     </section>
   )
